@@ -322,9 +322,6 @@
                     }
                 }
     
-                // @include mq-max(4xl) {
-                //     bottom: 38%;
-                // }
     
                 @include mq-max(2xl) {
                     right: 12%;
@@ -410,9 +407,6 @@
                     left: -23px;
                 }
     
-                // @include mq-max(4xl) {
-                //     bottom: 38%;
-                // }
     
                 @include mq-max(xl) {
                     right: unset;
@@ -520,9 +514,6 @@
                 }
             }
 
-            // @include mq-max(4xl) {
-            //     bottom: 38%;
-            // }
 
             @include mq-max(2xl) {
                 right: 12%;
@@ -608,9 +599,6 @@
                 left: -23px;
             }
 
-            // @include mq-max(4xl) {
-            //     bottom: 38%;
-            // }
 
             @include mq-max(xl) {
                 right: unset;

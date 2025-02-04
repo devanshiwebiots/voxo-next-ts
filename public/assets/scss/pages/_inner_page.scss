@@ -551,10 +551,6 @@
 
     .input {
       label {
-        // position: absolute;
-        // top: 10px;
-        // left: 0;
-        // z-index: 2;
         cursor: pointer;
         line-height: 60px;
         color: $shade-gray;
@@ -2321,12 +2317,6 @@
 
       &:hover {
         .category-product {
-          // .cate-shape {
-          //   i {
-          //     color: var(--theme-color);
-          //   }
-          // }
-
           .cate-contain {
             h5 {
               color: var(--theme-color);
@@ -2358,9 +2348,6 @@
   align-items: center;
   position: relative;
 
-  // @include mq-max(md) {
-  //   margin-top: 30px;
-  // }
 
   .blog-image-box {
     position: relative;

@@ -122,7 +122,6 @@ $btn-color in (dark, $theme-font-color),
         #{$property}: $rtl-value;
     }
 }
-// @include rtl(float, left, right);
 /*======= align css ends  ======= */
 
 // repeated css mixins
