@@ -1,4 +1,5 @@
 import { Btn } from "@/Components/AbstractElements";
+import { ISMODE } from "@/ReduxToolkit/Reducers/ThemeCustomizerReducer";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
@@ -10,11 +11,11 @@ const DarkLight = () => {
     if (light) {
       setMoonlight(!light);
       html.className = "light";
-      dispatch({ type: "ISMODE", payload: "light" });
+      dispatch(ISMODE("light"));
     } else {
       setMoonlight(!light);
       html.className = "dark";
-      dispatch({ type: "ISMODE", payload: "dark" });
+      dispatch(ISMODE("dark"));
     }
   };
   return (

@@ -3,6 +3,7 @@ import { Range, getTrackBackground } from "react-range";
 import { useDispatch } from "react-redux";
 import { AccordionBody, AccordionHeader, AccordionItem } from "reactstrap";
 import { Prices } from "@/Constant";
+import { PRICEFILTER } from "@/ReduxToolkit/Reducers/ProductFilterReducer";
 
 const PriceRange = ({ productData }) => {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const PriceRange = ({ productData }) => {
   }, [productData]);
   const handleChange = (val) => {
     setValues1(val);
-    dispatch({ type: "PRICEFILTER", payload: val });
+    dispatch(PRICEFILTER(val));
   };
   return (
     <AccordionItem className="category-price">

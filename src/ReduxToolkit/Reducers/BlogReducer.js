@@ -1,8 +1,20 @@
-import { createReducer } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-export const BlogReducer = createReducer({ blogdata: [], Blogdatanew: '' }, {
-    'GETBLOGDATA': (state, action) => {
-        state.blogdata = action.payload;
-        state.Blogdatanew = action.payload;
-    }
+const initialState = {
+  blogdata: [],
+  Blogdatanew: "",
+};
+
+const BlogReducer = createSlice({
+  name: "blog",
+  initialState,
+  reducers: {
+    GETBLOGDATA: (state, action) => {
+      state.blogdata = action.payload;
+      state.Blogdatanew = action.payload;
+    },
+  },
 });
+
+export const { GETBLOGDATA } = BlogReducer.actions;
+export default BlogReducer.reducer;

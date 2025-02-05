@@ -1,3 +1,5 @@
+import { ADDTOCART } from "@/ReduxToolkit/Reducers/AddtoCartReducer";
+import { ISCARTADD } from "@/ReduxToolkit/Reducers/ModalReducer";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -13,11 +15,11 @@ const AddToCartProduct = ({ elem, staticActions }) => {
     if (staticActions) {
       router.push("/page/cart");
     } else {
-      dispatch({ type: "ISCARTADD", payload: !addToCartModal, elem });
+      dispatch(ISCARTADD(!addToCartModal, elem));
       axios
         .post("/api/addtocart", { id: elem?.id })
         .then((res) => {
-          dispatch({ type: "ADDTOCART", payload: res.data });
+          dispatch(ADDTOCART(res.data));
         })
         .catch((error) => {
           return "There was an error!", error;

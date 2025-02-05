@@ -1,3 +1,4 @@
+import { CHANGECOMPARE } from "@/ReduxToolkit/Reducers/CompareReducer";
 import { PostCartData } from "@/Utils";
 import { useRouter } from "next/navigation";
 import { RefreshCw } from "react-feather";
@@ -13,7 +14,7 @@ const CompareProducts = ({ elem, staticActions }) => {
     } else {
       PostCartData(`/api/addtocompare`, { id: elem?.id })
         .then((res) => {
-          dispatch({ type: "CHANGECOMPARE", payload: res?.data });
+          dispatch(CHANGECOMPARE(res?.data));
         })
         .catch((error) => {
           return "There was an error!", error;

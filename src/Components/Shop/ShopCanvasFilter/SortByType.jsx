@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
-import { getAPIData } from '@/Utils';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from "react";
+import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
+import { getAPIData } from "@/Utils";
+import { useDispatch } from "react-redux";
+import { CATEGORY } from "@/ReduxToolkit/Reducers/ProductFilterReducer";
 
 const SortByType = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,15 +18,15 @@ const SortByType = () => {
     getProducts?.map((el) => setFeatures((prev) => Array.from(new Set([...prev, el?.type]))));
   }, [getProducts]);
   return (
-    <Dropdown className='select-featured' isOpen={isOpen} toggle={() => setIsOpen(!isOpen)}>
-      <DropdownToggle className='dropdown-toggle'>
-        <span>{'Select Featured'}</span> <i className='fas fa-angle-down ms-lg-3 ms-2'></i>
+    <Dropdown className="select-featured" isOpen={isOpen} toggle={() => setIsOpen(!isOpen)}>
+      <DropdownToggle className="dropdown-toggle">
+        <span>{"Select Featured"}</span> <i className="fas fa-angle-down ms-lg-3 ms-2"></i>
       </DropdownToggle>
       <DropdownMenu>
         {Features &&
           Features.map((elem, i) => {
             return (
-              <DropdownItem key={i} onClick={() => dispatch({ type: 'CATEGORY', payload: [elem] })}>
+              <DropdownItem key={i} onClick={() => dispatch(CATEGORY([elem]))}>
                 {elem}
               </DropdownItem>
             );

@@ -1,10 +1,12 @@
 import { allCurrency } from "@/Data/TopHeaderData";
+import { CURRENCYCHANGE } from "@/ReduxToolkit/Reducers/CurrencyReducer";
 import { DollarSign } from "react-feather";
 import { useDispatch } from "react-redux";
 
 const Currency = () => {
   const dispatch = useDispatch();
-  const onHandleClick = (value) => dispatch({ type: "CURRENCYCHANGE", payload: value });
+  const onHandleClick = (value) => dispatch(CURRENCYCHANGE(value));
+
   return (
     <li className="onhover-dropdown small-dropdown">
       <div className="cart-media">

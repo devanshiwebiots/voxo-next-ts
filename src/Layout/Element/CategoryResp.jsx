@@ -1,4 +1,5 @@
 import { CategoryList } from "@/Constant";
+import { CATEGORYRESPONSIVE, OVERLAY } from "@/ReduxToolkit/Reducers/ModalReducer";
 import useWindowDimensions from "@/Utils/useWindowDimensions";
 import { useDispatch } from "react-redux";
 
@@ -7,8 +8,8 @@ const CategoryResp = () => {
   const { width } = useWindowDimensions();
   const toggleModal = () => {
     if (width > 1200) {
-      dispatch({ type: "CATEGORYRESPONSIVE" });
-      dispatch({ type: "OVERLAY" });
+      dispatch(CATEGORYRESPONSIVE());
+      dispatch(OVERLAY());
     }
   };
   return (

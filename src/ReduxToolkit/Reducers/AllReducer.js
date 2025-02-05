@@ -1,14 +1,22 @@
-import { createReducer } from "@reduxjs/toolkit";
-const Values = {
+import { createSlice } from "@reduxjs/toolkit";
+
+const initialState = {
     Is_Search: false,
     Is_Focus: false
-}
-export const CommonReducer = createReducer(Values, {
-    'IS_SEARCH': (state, action) => {
-        state.Is_Search = !state.Is_Search
+};
+
+const CommonReducer = createSlice({
+  name: "common",
+  initialState,
+  reducers: {
+    IS_SEARCH: (state) => {
+      state.Is_Search = !state.Is_Search;
     },
-    'IS_FOCUS': (state, action) => {
-        state.Is_Focus = action.payload
-    }
-}
-)
+    IS_FOCUS: (state, action) => {
+      state.Is_Focus = action.payload;
+    },
+  },
+});
+
+export const { IS_SEARCH, IS_FOCUS } = CommonReducer.actions;
+export default CommonReducer.reducer;

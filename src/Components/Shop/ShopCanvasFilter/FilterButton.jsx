@@ -2,17 +2,13 @@ import { Filter } from "@/Constant";
 import { AlignLeft } from "react-feather";
 import { useDispatch } from "react-redux";
 import { Btn } from "../../AbstractElements";
+import { IS_OFFSET, OVERLAY } from "@/ReduxToolkit/Reducers/ModalReducer";
 
 const FilterButton = ({ customClass }) => {
   const dispatch = useDispatch();
   const toggle = () => {
-    dispatch({
-      type: "IS_OFFSET",
-    });
-    dispatch({
-      type: "OVERLAY",
-      payload: false,
-    });
+    dispatch(IS_OFFSET());
+    dispatch(OVERLAY());
   };
   return (
     <div className={customClass ? customClass : "hide-button mb-3"}>

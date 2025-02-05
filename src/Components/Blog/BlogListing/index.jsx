@@ -1,20 +1,24 @@
-import { getAllUsers } from '@/Service/FetchApi';
-import { Fragment, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Col, Container, Row } from 'reactstrap';
-import PaginationComp from '../../Element/Pagination';
-import LeftSidebar from '../BlogDetails/LeftSidebar';
-import BlogListCard from './BlogListCard';
+import { Fragment, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Col, Container, Row } from "reactstrap";
+import PaginationComp from "../../Element/Pagination";
+import LeftSidebar from "../BlogDetails/LeftSidebar";
+import BlogListCard from "./BlogListCard";
+import { getAPIData } from "@/Utils";
+import { GETBLOGDATA } from "@/ReduxToolkit/Reducers/BlogReducer";
 
 const BlogListinfContain = () => {
   const dispatch = useDispatch();
-  const types = 'GETBLOGDATA';
-  const addClass = 'section-b-space';
+  const addClass = "section-b-space";
   const { Blogdatanew } = useSelector((state) => state.BlogReducer);
   useEffect(() => {
-    !Blogdatanew && dispatch(getAllUsers('blog', types));
+    if (!Blogdatanew) {
+      getAPIData(`/api/blog`).then((res) => {
+        dispatch(GETBLOGDATA(res?.data));
+      });
+    }
   }, [Blogdatanew, dispatch]);
-  const BlogDataFilter = Blogdatanew && Blogdatanew.filter((el) => el.type === 'blogcard');
+  const BlogDataFilter = Blogdatanew && Blogdatanew.filter((el) => el.type === "blogcard");
 
   const StoreBlog = BlogDataFilter[0]?.blogs;
   const [currentPage, setCurrentPage] = useState(1);
@@ -29,11 +33,11 @@ const BlogListinfContain = () => {
   };
   return (
     <Fragment>
-      <section className='left-sidebar-section masonary-blog-section'>
+      <section className="left-sidebar-section masonary-blog-section">
         <Container>
-          <Row className='g-4'>
-            <Col lg='9' md='7' className='order-md-1 ratio_square'>
-              <Row className='g-4 g-xl-5'>
+          <Row className="g-4">
+            <Col lg="9" md="7" className="order-md-1 ratio_square">
+              <Row className="g-4 g-xl-5">
                 <BlogListCard currentData={currentData} />
               </Row>
             </Col>

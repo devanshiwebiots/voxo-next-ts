@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { SIZEMODAL } from "@/ReduxToolkit/Reducers/ModalReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { Modal, ModalBody, ModalHeader } from "reactstrap";
 
@@ -6,7 +7,7 @@ const SizeModal = () => {
   const { sizeModal } = useSelector((state) => state.ModalReducer);
   const dispatch = useDispatch();
   const toggle = () => {
-    dispatch({ type: "SIZEMODAL" });
+    dispatch(SIZEMODAL());
   };
   return (
     <Modal fade centered={true} className="modal-size" isOpen={sizeModal} toggle={toggle}>

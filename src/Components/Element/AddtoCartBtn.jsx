@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { Btn } from "@/Components/AbstractElements";
 import { Addtocart } from "@/Constant";
+import { ADDTOCART } from "@/ReduxToolkit/Reducers/AddtoCartReducer";
 
 const AddtoCartBtn = ({ customeclass, data, btn }) => {
   const dispatch = useDispatch();
@@ -11,7 +12,7 @@ const AddtoCartBtn = ({ customeclass, data, btn }) => {
     axios
       .post(`/api/addtocart`, { id: data?.id })
       .then((res) => {
-        dispatch({ type: "ADDTOCART", payload: res.data });
+        dispatch(ADDTOCART(res.data));
       })
       .catch((error) => {
         return "There was an error!", error;

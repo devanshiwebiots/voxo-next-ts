@@ -4,15 +4,15 @@ import { Modal, ModalBody, ModalHeader } from "reactstrap";
 import { Color, CommonPath, ContinueShopping, Qty, SuccessAddtocart, TOTAL, VIEWCART } from "@/Constant";
 import RelatedCartProduct from "../../Components/Element/RelatedCart";
 import { Btn } from "@/Components/AbstractElements";
-import Image from "next/image";
 import Img from "./Images";
+import { ISCARTADD } from "@/ReduxToolkit/Reducers/ModalReducer";
 
 const CartSuccessModal = () => {
   const dispatch = useDispatch();
   const { addToCartModal, addedCartData } = useSelector((state) => state.ModalReducer);
   const { symbol, currencyValue } = useSelector((state) => state.CurrencyReducer);
   const toggle = () => {
-    dispatch({ type: "ISCARTADD" });
+    dispatch(ISCARTADD());
   };
   return (
     <Modal className="cart-modal modal-dialog-scrollable" fade centered={true} size="lg" isOpen={addToCartModal} toggle={toggle} style={{ display: `${!addToCartModal ? "none" : "block"}` }}>

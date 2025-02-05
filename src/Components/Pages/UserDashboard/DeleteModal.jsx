@@ -2,15 +2,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import { Areyousuretodelete, YesDeleteaccount } from "@/Constant";
 import { Btn } from "../../AbstractElements";
+import { CONFIRMDELETE, OPENDELETEMODAL } from "@/ReduxToolkit/Reducers/ModalReducer";
 const DeleteModal = () => {
   const dispatch = useDispatch();
   const { isDelete } = useSelector((state) => state.ModalReducer);
   const toggle = () => {
-    dispatch({ type: "OPENDELETEMODAL" });
+    dispatch(OPENDELETEMODAL());
   };
   const RedirectModal = () => {
-    dispatch({ type: "OPENDELETEMODAL" });
-    dispatch({ type: "CONFIRMDELETE" });
+    dispatch(OPENDELETEMODAL());
+    dispatch(CONFIRMDELETE());
   };
   return (
     <>

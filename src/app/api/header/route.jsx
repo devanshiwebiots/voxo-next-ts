@@ -2,5 +2,5 @@ import { NextResponse } from "next/server";
 import HeaderMenu from "../../ApiData/HeaderMenu.json"
 
 export async function GET() {
-  return await NextResponse.json(HeaderMenu);
+  return NextResponse.json(HeaderMenu);
 }

@@ -1,28 +1,29 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
-import { allCurrency } from '../../Data/TopHeaderData';
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
+import { allCurrency } from "../../Data/TopHeaderData";
+import { CURRENCYCHANGE } from "@/ReduxToolkit/Reducers/CurrencyReducer";
 
 const TopHeaderCurrency = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const onHandleClick = (value) => {
-    dispatch({ type: 'CURRENCYCHANGE', payload: value });
+    dispatch(CURRENCYCHANGE(value));
   };
   return (
     <li>
-      <Dropdown className='top-header-dropdown' isOpen={isOpen} toggle={() => setIsOpen(!isOpen)}>
+      <Dropdown className="top-header-dropdown" isOpen={isOpen} toggle={() => setIsOpen(!isOpen)}>
         <DropdownToggle>
           <span>
             <b>$</b> Dollar
           </span>
-          <i className='fas fa-chevron-down'></i>
+          <i className="fas fa-chevron-down"></i>
         </DropdownToggle>
-        <DropdownMenu className='dropdown-menu-end'>
+        <DropdownMenu className="dropdown-menu-end">
           {allCurrency.map((elem, i) => {
             return (
               <DropdownItem key={i}>
-                <a className='d-block' onClick={() => onHandleClick(elem)}>
+                <a className="d-block" onClick={() => onHandleClick(elem)}>
                   {elem.currency}
                 </a>
               </DropdownItem>

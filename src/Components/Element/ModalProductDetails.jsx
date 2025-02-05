@@ -7,6 +7,7 @@ import AddtoCartBtn from "./AddtoCartBtn";
 import DynamicRating from "./DynamicRating";
 import KGForVegetable from "./KGForVegetable";
 import VegetableProductDetails from "./VegetableProductDetails";
+import { IS_MODAL } from "@/ReduxToolkit/Reducers/ModalReducer";
 
 const ModalProductDetails = ({ data }) => {
   const [selectedClass, setSelectedClass] = useState(0);
@@ -75,15 +76,7 @@ const ModalProductDetails = ({ data }) => {
         )}
         <div className="product-btns">
           <AddtoCartBtn customeclass="btn btn-solid-default btn-sm" data={data} />
-          <Link
-            href={`/product/product_left_sidebar/${data?.id}`}
-            className="btn btn-solid-default btn-sm"
-            onClick={() =>
-              dispatch({
-                type: "IS_MODAL",
-              })
-            }
-          >
+          <Link href={`/product/product_left_sidebar/${data?.id}`} className="btn btn-solid-default btn-sm" onClick={() => dispatch(IS_MODAL())}>
             {Viewdetails}
           </Link>
         </div>

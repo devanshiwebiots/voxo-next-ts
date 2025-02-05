@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Input, InputGroup } from "reactstrap";
 import { getAPIData } from "../../Utils";
 import SearchSuggestion from "./SearchSuggestion";
+import { IS_FOCUS, IS_SEARCH } from "@/ReduxToolkit/Reducers/AllReducer";
 
 const SearchBarToggle = () => {
   const dispatch = useDispatch();
@@ -16,11 +17,11 @@ const SearchBarToggle = () => {
   const FilteredData = productData?.filter((el) => el.name.toLowerCase().includes(onInputText.toLowerCase()));
   const handleChange = (e) => {
     setOnInputText(e.target.value);
-    dispatch({ type: "IS_FOCUS", payload: true });
+    dispatch(IS_FOCUS(true));
   };
   const handleClick = () => {
-    dispatch({ type: "IS_SEARCH" });
-    dispatch({ type: "IS_FOCUS", payload: false });
+    dispatch(IS_SEARCH());
+    dispatch(IS_FOCUS(false));
   };
   return (
     <div className={`search-full${Is_Search ? " open show" : ""}`}>

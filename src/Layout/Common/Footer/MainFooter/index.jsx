@@ -13,9 +13,9 @@ const MainFooter = ({ QuestionTab }) => {
       .then((res) => {
         setGetFooter(res.data);
       })
-      .catch((Error) => 
-        {return Error}
-      );
+      .catch((Error) => {
+        return Error;
+      });
   }, []);
   return (
     <Container>

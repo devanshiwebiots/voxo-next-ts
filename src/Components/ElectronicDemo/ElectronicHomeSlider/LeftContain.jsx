@@ -1,3 +1,4 @@
+import { YOUTUBEMODAL } from "@/ReduxToolkit/Reducers/ModalReducer";
 import { Slide } from "react-awesome-reveal";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -34,7 +35,7 @@ const LeftContain = ({ elem }) => {
           </p>
           <div className="discover-block d-sm-block d-none" data-animation-in="fadeInUp" data-delay-in="0.7">
             <div className="d-flex">
-              <a href="#javascript" className="play-icon theme-bg-color" onClick={() => dispatch({ type: "YOUTUBEMODAL" })}>
+              <a href="#javascript" className="play-icon theme-bg-color" onClick={() => dispatch(YOUTUBEMODAL())}>
                 <i className="fas fa-play"></i>
               </a>
               <div className="discover-content">

@@ -3,17 +3,17 @@ import React, { useEffect } from "react";
 import { Col, Table } from "reactstrap";
 import { action, CommonPath, image, Prices, productname, quentityname, Total } from "@/Constant";
 import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
 import { Input } from "reactstrap";
 import { deleteProduct } from "../../../Utils";
 import MobileViewCartData from "./MobileViewCartData";
 import Img from "@/Components/Element/Images";
+import { ADDTOCART, QUANTITY } from "@/ReduxToolkit/Reducers/AddtoCartReducer";
 
 const CartData = ({ cartData, setTotalMrp }) => {
   const { quantity } = useSelector((state) => state.AddToCartReducer);
   const dispatch = useDispatch();
   const handleQtyChange = (qty, id, price) => {
-    dispatch({ type: "QUANTITY", payload: { qty, id, price } });
+    dispatch(QUANTITY({ qty, id, price }));
   };
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const CartData = ({ cartData, setTotalMrp }) => {
 
   const removeProduct = (product) => {
     deleteProduct(`/api/remove/cart/${product.id}`).then((res) => {
-      dispatch({ type: 'ADDTOCART', payload: res?.data });
+      dispatch(ADDTOCART(res?.data));
     });
   };
 

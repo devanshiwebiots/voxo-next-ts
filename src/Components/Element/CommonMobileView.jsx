@@ -1,4 +1,5 @@
 import { Account, Cart, Category, Homes, wishlist } from "@/Constant";
+import { CATEGORYRESPONSIVE, OVERLAY } from "@/ReduxToolkit/Reducers/ModalReducer";
 import Link from "next/link";
 import { AlignJustify, Heart, Home, ShoppingBag, User } from "react-feather";
 import { useDispatch } from "react-redux";
@@ -6,8 +7,8 @@ import { useDispatch } from "react-redux";
 const CommonMobileView = () => {
   const dispatch = useDispatch();
   const toggleModal = () => {
-    dispatch({ type: "OVERLAY" });
-    dispatch({ type: "CATEGORYRESPONSIVE" });
+    dispatch(OVERLAY());
+    dispatch(CATEGORYRESPONSIVE());
   };
   return (
     <div className="mobile-menu d-sm-none">

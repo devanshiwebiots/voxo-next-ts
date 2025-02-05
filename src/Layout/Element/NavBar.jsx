@@ -8,6 +8,7 @@ import useWindowDimensions from "@/Utils/useWindowDimensions";
 import AddToHome from "./AddToHome";
 import ThreeBarToggle from "./ThreeBarToggle";
 import { getAPIData } from "@/Utils";
+import { OVERLAY, TOPMENUTOGGLE } from "@/ReduxToolkit/Reducers/ModalReducer";
 
 const NavBar = ({ customClass }) => {
   const { t } = useTranslation("common");
@@ -21,8 +22,8 @@ const NavBar = ({ customClass }) => {
     getAPIData("/api/header").then((res) => setHeaderData(res?.data));
   }, []);
   const handleClick = () => {
-    dispatch({ type: "TOPMENUTOGGLE" });
-    dispatch({ type: "OVERLAY" });
+    dispatch(TOPMENUTOGGLE);
+    dispatch(OVERLAY);
   };
   return (
     <div className="main-navbar">
@@ -71,13 +72,13 @@ const NavBar = ({ customClass }) => {
                                         href={child?.path}
                                         className="megamenu-image d-block"
                                         onClick={() => {
-                                          width < 1200 && dispatch({ type: "OVERLAY" });
-                                          dispatch({ type: "TOPMENUTOGGLE" });
+                                          width < 1200 && dispatch(OVERLAY);
+                                          dispatch(TOPMENUTOGGLE);
                                         }}
                                       >
-                                      <picture>
-                                        <img src={`/assets/images/demo-image/${child?.imagePath}`} className="img-fluid" alt="demo-image" />
-                                      </picture>
+                                        <picture>
+                                          <img src={`/assets/images/demo-image/${child?.imagePath}`} className="img-fluid" alt="demo-image" />
+                                        </picture>
                                       </Link>
                                     </li>
                                   </ul>
@@ -121,8 +122,8 @@ const NavBar = ({ customClass }) => {
                                               <Link
                                                 href={subChild.path}
                                                 onClick={() => {
-                                                  width < 1200 && dispatch({ type: "OVERLAY" });
-                                                  dispatch({ type: "TOPMENUTOGGLE" });
+                                                  width < 1200 && dispatch(OVERLAY);
+                                                  dispatch(TOPMENUTOGGLE);
                                                 }}
                                               >
                                                 {subChild.title}
@@ -156,8 +157,8 @@ const NavBar = ({ customClass }) => {
                               <Link
                                 href={`${result?.path}`}
                                 onClick={() => {
-                                  width < 1200 && dispatch({ type: "OVERLAY" });
-                                  dispatch({ type: "TOPMENUTOGGLE" });
+                                  width < 1200 && dispatch(OVERLAY());
+                                  dispatch(TOPMENUTOGGLE());
                                 }}
                               >
                                 {result?.title}

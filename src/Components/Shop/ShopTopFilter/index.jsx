@@ -1,12 +1,12 @@
-import { useState } from 'react';
-import { Col, Container, Row } from 'reactstrap';
-import useFilter from '@/Utils/useFilter';
-import PaginationComp from '../../Element/Pagination';
-import AllProducts from '../ShopCanvasFilter/AllProducts';
-import FilterButton from '../ShopCanvasFilter/FilterButton';
-import FilterContent from '../ShopCanvasFilter/FilterContent';
-import MobileViewFilter from './MobileViewFilter';
-import TopfilterCategories from './TopfilterCategories';
+import { useState } from "react";
+import { Col, Container, Row } from "reactstrap";
+import useFilter from "@/Utils/useFilter";
+import PaginationComp from "../../Element/Pagination";
+import AllProducts from "../ShopCanvasFilter/AllProducts";
+import FilterButton from "../ShopCanvasFilter/FilterButton";
+import FilterContent from "../ShopCanvasFilter/FilterContent";
+import MobileViewFilter from "./MobileViewFilter";
+import TopfilterCategories from "./TopfilterCategories";
 
 const ShopTopFilterContain = ({ productData }) => {
   const grid5 = true;
@@ -23,15 +23,15 @@ const ShopTopFilterContain = ({ productData }) => {
     }
   };
   return (
-    <section className='section-b-space'>
+    <section className="section-b-space">
       <Container>
         <Row>
-          <Col lg='12' xs='12' className='ratio_30'>
-            <Row className='gx-4 gy-5'>
+          <Col lg="12" xs="12" className="ratio_30">
+            <Row className="gx-4 gy-5">
               <MobileViewFilter />
               <TopfilterCategories productData={productData} />
             </Row>
-            <FilterButton customClass={'filter-button mb-3'} />
+            <FilterButton customClass={"filter-button mb-3"} />
             <FilterContent grid5={grid5} />
             <AllProducts currentData={currentData} />
             <PaginationComp dataPerPage={dataPerPage} StoreProductLength={StoreProducts?.length} currentPage={currentPage} paginate={paginate} />

@@ -8,18 +8,21 @@ import { CommonPath } from "@/Constant";
 import TotalPrice from "./TotalPrice";
 import { toast } from "react-toastify";
 import { Btn } from "@/Components/AbstractElements";
+import { ADDTOCART } from "@/ReduxToolkit/Reducers/AddtoCartReducer";
 
 const ItemCart = () => {
   const [cartData, setCartData] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const { product } = useSelector((state) => state.AddToCartReducer);
-  
+
   const dispatch = useDispatch();
   const { symbol, currencyValue } = useSelector((state) => state.CurrencyReducer);
   useEffect(() => {
     getAPIData(`/api/getcart`)
       .then((res) => setCartData(res.data))
-      .catch((error) => {return error});
+      .catch((error) => {
+        return error;
+      });
   }, [product]);
   const getTotalPrice = () => {
     var addPrice = 0;
@@ -36,7 +39,7 @@ const ItemCart = () => {
   };
   const removeProduct = (product) => {
     deleteProduct(`/api/remove/cart/${product.id}`).then((res) => {
-      dispatch({ type: "ADDTOCART", payload: res?.data });
+      dispatch(ADDTOCART(res?.data));
     });
     toast.success("Successfully Remove Product");
   };

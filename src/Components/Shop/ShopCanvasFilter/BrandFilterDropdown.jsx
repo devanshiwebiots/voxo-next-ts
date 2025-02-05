@@ -1,4 +1,5 @@
 import { Brand } from "@/Constant";
+import { BRANDFILTER } from "@/ReduxToolkit/Reducers/ProductFilterReducer";
 import { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AccordionBody, AccordionHeader, AccordionItem, Input, Label } from "reactstrap";
@@ -9,7 +10,7 @@ const BrandFilterDropdown = ({ productData }) => {
   const BrandFilter = [...new Set([...productData?.map((elem) => elem.brand)])];
   const { brand } = useSelector((state) => state.ProductFilter);
   const handleBrandChange = (e) => {
-    dispatch({ type: "BRANDFILTER", payload: { checked: e.target.checked, value: e.target.value } });
+    dispatch(BRANDFILTER({ checked: e.target.checked, value: e.target.value }));
   };
   return (
     <AccordionItem className="category-rating">

@@ -7,6 +7,7 @@ import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Col, Row } from "reactstrap";
 import CategoryResp from "./CategoryResp";
+import { CATEGORYRESPONSIVE, CLOSEOVERLAY, OVERLAY } from "@/ReduxToolkit/Reducers/ModalReducer";
 
 const AllCategories = ({ isCategories }) => {
   const { width } = useWindowDimensions();
@@ -25,8 +26,8 @@ const AllCategories = ({ isCategories }) => {
           attrBtn={{
             className: "btn-solid-default toggle-category d-sm-block d-none",
             onClick: () => {
-              width < 1200 && dispatch({ type: "OVERLAY" });
-              dispatch({ type: "CATEGORYRESPONSIVE" });
+              width < 1200 && dispatch(OVERLAY());
+              dispatch(CATEGORYRESPONSIVE());
             },
           }}
         >
@@ -65,8 +66,8 @@ const AllCategories = ({ isCategories }) => {
                                           <Link
                                             href={megamenu.path}
                                             onClick={() => {
-                                              width < 1200 && dispatch({ type: "CATEGORYRESPONSIVE" });
-                                              dispatch({ type: "CLOSEOVERLAY" });
+                                              width < 1200 && dispatch(CATEGORYRESPONSIVE());
+                                              dispatch(CLOSEOVERLAY());
                                             }}
                                           >
                                             {megamenu.title}
@@ -95,8 +96,8 @@ const AllCategories = ({ isCategories }) => {
                     <Link
                       href={menu.path}
                       onClick={() => {
-                        width < 1200 && dispatch({ type: "CATEGORYRESPONSIVE" });
-                        dispatch({ type: "CLOSEOVERLAY" });
+                        width < 1200 && dispatch(CATEGORYRESPONSIVE());
+                        dispatch(CLOSEOVERLAY());
                       }}
                     >
                       {menu.title}

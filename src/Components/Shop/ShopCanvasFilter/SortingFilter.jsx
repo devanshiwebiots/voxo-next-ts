@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
 import GridContain from "./GridContain";
 import SortByType from "./SortByType";
+import { SORTINGFILTER } from "@/ReduxToolkit/Reducers/ProductFilterReducer";
 
 const SortingFilter = ({ grid5, listGrid }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,7 +43,7 @@ const SortingFilter = ({ grid5, listGrid }) => {
               <DropdownMenu>
                 {SortData &&
                   SortData.map((elem) => (
-                    <DropdownItem key={elem.id} onClick={() => dispatch({ type: "SORTINGFILTER", payload: elem.sort })}>
+                    <DropdownItem key={elem.id} onClick={() => dispatch(SORTINGFILTER(elem.sort))}>
                       {elem.sort}
                     </DropdownItem>
                   ))}

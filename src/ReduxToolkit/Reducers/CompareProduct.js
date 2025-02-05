@@ -1,11 +1,18 @@
-import { createReducer } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     compareProducts: []
 };
 
-export const CompareProduct = createReducer(initialState, {
-    'CHANGECOMPARE': (state, action) => {
-        state.compareProducts = action.payload
+const compareProductSlice = createSlice({
+  name: "compareProduct",
+  initialState,
+  reducers: {
+    CHANGECOMPARE: (state, action) => {
+      state.compareProducts = action.payload;
     },
+  },
 });
+
+export const { CHANGECOMPARE } = compareProductSlice.actions;
+export default compareProductSlice.reducer;

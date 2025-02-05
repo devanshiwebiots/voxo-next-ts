@@ -1,19 +1,27 @@
-import { createReducer } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { ConfigDB } from "../../Config/ThemeConfigSettings";
-const Values = {
+
+const initialState = {
     direction: ConfigDB.layoutDirection,
     mode: ConfigDB.darkMode,
     primaryColor: ConfigDB.primaryColor
-}
-export const ThemeCustomizerReducer = createReducer(Values, {
-    'ISDIRECTION': (state, action) => {
-        state.direction = action.payload
+};
+
+const ThemeCustomizerReducer = createSlice({
+  name: "themeCustomizer",
+  initialState,
+  reducers: {
+    ISDIRECTION: (state, action) => {
+      state.direction = action.payload;
     },
-    'ISMODE': (state, action) => {
-        state.mode = action.payload
+    ISMODE: (state, action) => {
+      state.mode = action.payload;
     },
-    'ISPRIMARYCOLOR': (state, action) => {
-        state.primaryColor = action.payload
-    }
-}
-)
+    ISPRIMARYCOLOR: (state, action) => {
+      state.primaryColor = action.payload;
+    },
+  },
+});
+
+export const { ISDIRECTION, ISMODE, ISPRIMARYCOLOR } = ThemeCustomizerReducer.actions;
+export default ThemeCustomizerReducer.reducer;

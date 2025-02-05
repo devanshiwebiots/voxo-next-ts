@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Heart } from "react-feather";
 import { useDispatch } from "react-redux";
 import { PostCartData } from "@/Utils";
+import { ADDTOWISHLIST } from "@/ReduxToolkit/Reducers/AddtoCartReducer";
 
 const AddToWishList = ({ elem, staticActions }) => {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const AddToWishList = ({ elem, staticActions }) => {
     } else {
       PostCartData(`/api/addtowishlist`, { id: elem?.id })
         .then((res) => {
-          dispatch({ type: "ADDTOWISHLIST", payload: res?.data });
+          dispatch(ADDTOWISHLIST(res?.data));
         })
         .catch((error) => {
           return "There was an error!", error;

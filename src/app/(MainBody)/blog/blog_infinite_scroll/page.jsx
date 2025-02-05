@@ -4,17 +4,21 @@ import BreadCrumb from "@/Components/Element/BreadCrumb";
 import FlowerSubscribe from "@/Components/FlowerDemo/FlowerSubscribe";
 import { CommonPath } from "@/Constant";
 import Layout1 from "@/Layout/Layout1";
-import { getAllUsers } from "@/Service/FetchApi";
+import { GETBLOGDATA } from "@/ReduxToolkit/Reducers/BlogReducer";
+import { getAPIData } from "@/Utils";
 import Head from "next/head";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const Blog_infinite_scroll = () => {
   const dispatch = useDispatch();
-  const types = "GETBLOGDATA";
   const { Blogdatanew } = useSelector((state) => state.BlogReducer);
   useEffect(() => {
-    !Blogdatanew && dispatch(getAllUsers("blog", types));
+    if (!Blogdatanew) {
+      getAPIData(`/api/blog`).then((res) => {
+        dispatch(GETBLOGDATA(res?.data));
+      });
+    }
   }, [Blogdatanew, dispatch]);
   return (
     <Layout1>

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { LTR, RTL } from "@/Constant";
 import { Btn } from "@/Components/AbstractElements";
+import { ISDIRECTION } from "@/ReduxToolkit/Reducers/ThemeCustomizerReducer";
 
 const Direction = () => {
   const [isDir, setIsDir] = useState("ltr");
@@ -13,13 +14,13 @@ const Direction = () => {
       document.body.classList.add("ltr");
       document.body.classList.remove("rtl");
       document.documentElement.dir = "ltr";
-      dispatch({ type: "ISDIRECTION", payload: "ltr" });
+      dispatch(ISDIRECTION("ltr"));
     } else {
       localStorage.setItem("direction", "rtl");
       document.body.classList.add("rtl");
       document.body.classList.remove("ltr");
       document.documentElement.dir = "rtl";
-      dispatch({ type: "ISDIRECTION", payload: "rtl" });
+      dispatch(ISDIRECTION("rtl"));
     }
   };
   return (

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AccordionBody, AccordionHeader, AccordionItem } from "reactstrap";
 import { Color } from "@/Constant";
+import { COLORFILTER } from "@/ReduxToolkit/Reducers/ProductFilterReducer";
 
 const ColorFilter = ({ productData }) => {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const ColorFilter = ({ productData }) => {
           <ul className="category-list">
             {colorArray?.map((elem, i) => (
               <li className={`${color?.includes(elem) ? "active" : ""}`} key={i}>
-                <a href="#javascript" style={{ background: elem }} onClick={() => dispatch({ type: "COLORFILTER", payload: elem })}>
+                <a href="#javascript" style={{ background: elem }} onClick={() => dispatch(COLORFILTER(elem))}>
                   <i className="fas fa-check"></i>
                 </a>
               </li>

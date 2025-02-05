@@ -6,13 +6,12 @@ import Slider from "react-slick";
 import { Col, Modal, ModalBody, ModalHeader, Row } from "reactstrap";
 import Img from "./Images";
 import ModalProductDetails from "./ModalProductDetails";
+import { IS_MODAL } from "@/ReduxToolkit/Reducers/ModalReducer";
 
 const CommonModel = () => {
   const dispatch = useDispatch();
   const toggle = () => {
-    dispatch({
-      type: "IS_MODAL",
-    });
+    dispatch(IS_MODAL());
   };
   const { modal, data } = useSelector((state) => state.ModalReducer);
   const [state, setState] = useState({ nav1: null, nav2: null });

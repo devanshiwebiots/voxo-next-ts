@@ -3,6 +3,8 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { PostCartData } from "@/Utils";
+import { ADDTOWISHLIST } from "@/ReduxToolkit/Reducers/AddtoCartReducer";
+import { NOTIFICATIONALTER } from "@/ReduxToolkit/Reducers/ModalReducer";
 
 const ProductWishListAction = ({ singleProduct }) => {
   const dispatch = useDispatch();
@@ -10,12 +12,12 @@ const ProductWishListAction = ({ singleProduct }) => {
   const AddtoWishList = () => {
     PostCartData(`/api/addtowishlist`, { id: singleProduct ? singleProduct[0]?.id : 1 })
       .then((res) => {
-        dispatch({ type: "ADDTOWISHLIST", payload: res?.data });
+        dispatch(ADDTOWISHLIST(res?.data));
       })
       .catch((error) => {
         return "There was an error!", error;
       });
-    dispatch({ type: "NOTIFICATIONALTER", payload: singleProduct, value: true });
+    dispatch(NOTIFICATIONALTER(singleProduct, true));
     router.push("/page/wishlist");
   };
   useEffect(() => {}, [dispatch]);

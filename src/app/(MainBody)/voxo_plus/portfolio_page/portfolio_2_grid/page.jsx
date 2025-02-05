@@ -7,15 +7,18 @@ import Layout1 from "@/Layout/Layout1";
 import BreadCrumb from "@/Components/Element/BreadCrumb";
 import FlowerSubscribe from "@/Components/FlowerDemo/FlowerSubscribe";
 import PortFolioGridContain from "@/Components/VoxoPlus/PortfolioPage/PortFolioGrid";
-import { getAllUsers } from "@/Service/FetchApi";
-
+import { getAPIData } from "@/Utils";
+import { GETPORTFOLIODATA } from "@/ReduxToolkit/Reducers/PortfolioReducer";
 
 const Portfolio2Grid = () => {
   const dispatch = useDispatch();
-  const types = "GETPORTFOLIODATA";
   const { portfoliodata } = useSelector((state) => state.PortfolioReducer);
   useEffect(() => {
-    !portfoliodata && dispatch(getAllUsers("portfolio", types));
+    if (!portfoliodata) {
+      getAPIData(`/api/portfolio`).then((res) => {
+        dispatch(GETPORTFOLIODATA(res?.data));
+      });
+    }
   }, [dispatch, portfoliodata]);
   const colclass = "col-sm-6";
   return (

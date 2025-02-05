@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CommonPath, ProductAdded } from '@/Constant';
 import Img from '@/Components/Element/Images';
+import { NOTIFICATIONALTER } from '@/ReduxToolkit/Reducers/ModalReducer';
 
 const NotificationModal = () => {
   const dispatch = useDispatch();
@@ -9,7 +10,7 @@ const NotificationModal = () => {
   useEffect(() => {
     if (notificationData?.length > 0) {
       setTimeout(() => {
-        dispatch({ type: 'NOTIFICATIONALTER', value: false });
+        dispatch(NOTIFICATIONALTER(false));
       }, 5000);
     }
   }, [dispatch, notificationAlert, notificationData?.length]);

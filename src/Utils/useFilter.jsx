@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { BRAND, CATEGORY, COLOR, PRICEFILTER, SORTBYTYPE } from "@/ReduxToolkit/Reducers/ProductFilterReducer";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,11 +28,11 @@ const useFilter = (products) => {
   }
 
   useEffect(() => {
-    oldData && !!oldData.brand?.length && !arraysEqual(oldData.brand, storedData.brand) && dispatch({ type: "BRAND", payload: oldData.brand });
-    oldData && !!oldData.color?.length && !arraysEqual(oldData.color, storedData.color) && dispatch({ type: "COLOR", payload: oldData.color });
-    oldData && !!oldData.price?.length && !arraysEqual(oldData.price, storedData.price) && dispatch({ type: "PRICEFILTER", payload: oldData.price });
-    oldData && !!oldData.category?.length && !arraysEqual(oldData.category, storedData.category) && dispatch({ type: "CATEGORY", payload: oldData.category });
-    oldData && !!oldData.sortByType?.length && !arraysEqual(oldData.sortByType, storedData.sortByType) && dispatch({ type: "SORTBYTYPE", payload: oldData.sortByType });
+    oldData && !!oldData.brand?.length && !arraysEqual(oldData.brand, storedData.brand) && dispatch(BRAND(oldData.brand));
+    oldData && !!oldData.color?.length && !arraysEqual(oldData.color, storedData.color) && dispatch(COLOR(oldData.color));
+    oldData && !!oldData.price?.length && !arraysEqual(oldData.price, storedData.price) && dispatch(PRICEFILTER(oldData.price));
+    oldData && !!oldData.category?.length && !arraysEqual(oldData.category, storedData.category) && dispatch(CATEGORY(oldData.category));
+    oldData && !!oldData.sortByType?.length && !arraysEqual(oldData.sortByType, storedData.sortByType) && dispatch(SORTBYTYPE(oldData.sortByType));
   }, [Data]);
 
   useEffect(() => {

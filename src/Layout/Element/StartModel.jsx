@@ -1,5 +1,6 @@
 import { Btn } from "@/Components/AbstractElements";
 import { Neverdate, Ohfree, SignNewsletter, Submit } from "@/Constant";
+import { STARTMODAL } from "@/ReduxToolkit/Reducers/ModalReducer";
 import Image from "next/image";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,11 +8,11 @@ import { Input, Modal, ModalBody, ModalHeader } from "reactstrap";
 const StartModel = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch({ type: "STARTMODAL" });
+    dispatch(STARTMODAL());
   }, [dispatch]);
   const { firstModal } = useSelector((state) => state.ModalReducer);
   const toggle = () => {
-    dispatch({ type: "STARTMODAL" });
+    dispatch(STARTMODAL());
   };
   return (
     <Modal className="newletter-modal" toggle={toggle} isOpen={firstModal} centered={true}>

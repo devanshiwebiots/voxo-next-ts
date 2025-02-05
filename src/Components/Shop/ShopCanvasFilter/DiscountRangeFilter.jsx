@@ -1,4 +1,5 @@
 import { DiscountRange } from "@/Constant";
+import { DISCOUNTFILTER } from "@/ReduxToolkit/Reducers/ProductFilterReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { AccordionBody, AccordionHeader, AccordionItem, Input, Label } from "reactstrap";
 
@@ -23,7 +24,7 @@ const DiscountRangeFilter = ({ productData }) => {
   ];
   const dispatch = useDispatch();
   const onDiscountChange = (e, val) => {
-    dispatch({ type: "DISCOUNTFILTER", payload: { checked: e.target.checked, value: val } });
+    dispatch(DISCOUNTFILTER({ checked: e.target.checked, value: val }));
   };
   return (
     <AccordionItem>

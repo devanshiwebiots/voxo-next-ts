@@ -1,11 +1,20 @@
-import { createReducer } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-export const HeaderScroll = createReducer({ down: false, up: false }, {
-    'GET_SCROLLHEADER': (state) => {
-        state.down = true;
+const initialState = {
+    down: false,
+    up: false
+};
+
+const HeaderScroll = createSlice({
+  name: "headerScroll",
+  initialState,
+  reducers: {
+    GET_SCROLLHEADER: (state) => {
+      state.down = true;
+      state.up = true;
     },
-    'GET_SCROLLHEADER': (state) => {
-        state.up = true;
-    }
-}
-)
+  },
+});
+
+export const { GET_SCROLLHEADER } = HeaderScroll.actions;
+export default HeaderScroll.reducer;

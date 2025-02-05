@@ -5,6 +5,8 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import ProductWishListAction from "./ProductWishListAction";
 import Img from "@/Components/Element/Images";
+import { ADDTOCART } from "@/ReduxToolkit/Reducers/AddtoCartReducer";
+import { NOTIFICATIONALTER } from "@/ReduxToolkit/Reducers/ModalReducer";
 
 const ProductActions = ({ singleProduct }) => {
   const dispatch = useDispatch();
@@ -12,12 +14,13 @@ const ProductActions = ({ singleProduct }) => {
     axios
       .post(`/api/addtocart`, { id: singleProduct ? singleProduct[0]?.id : 1 })
       .then((res) => {
-        dispatch({ type: "ADDTOCART", payload: res.data });
+        dispatch(ADDTOCART(res.data));
       })
       .catch((error) => {
         return "There was an error!", error;
       });
-    dispatch({ type: "NOTIFICATIONALTER", payload: singleProduct ? singleProduct : 1, value: true });
+    dispatch(NOTIFICATIONALTER(singleProduct ? singleProduct : 1, true));
+
     toast.success("Item Added");
   };
   useEffect(() => {}, [dispatch]);
