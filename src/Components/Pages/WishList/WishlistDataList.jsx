@@ -12,11 +12,18 @@ import { ADDTOWISHLIST } from "@/ReduxToolkit/Reducers/AddtoCartReducer";
 const WishlistDataList = ({ wishlistData }) => {
   const dispatch = useDispatch();
   const { symbol, currencyValue } = useSelector((state) => state.CurrencyReducer);
+
   const removeProduct = (product) => {
     deleteProduct(`/api/remove/wishlist/${product.id}`).then((res) => {
-      dispatch(ADDTOWISHLIST(res?.data));
+      if (res?.data) {
+        dispatch(ADDTOWISHLIST(res?.data));
+        let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+        wishlist = wishlist.filter((id) => id !== product.id); 
+        localStorage.setItem("wishlist", JSON.stringify(wishlist)); 
+      }
     });
   };
+
   return (
     <Table className="cart-table wishlist-table">
       <WishlistTableHead />
@@ -40,7 +47,7 @@ const WishlistDataList = ({ wishlistData }) => {
                   <p>{elem.inStock > 0 ? "In Stock" : "Out of Stock"}</p>
                 </td>
                 <td>
-                  <button className="icon btn" href="#javascript" onClick={() => removeProduct(elem)}>
+                  <button className="icon btn" onClick={() => removeProduct(elem)}>
                     <i className="fas fa-times"></i>
                   </button>
                   <Link href={`/page/cart`} className="icon">

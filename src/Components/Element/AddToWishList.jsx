@@ -1,28 +1,32 @@
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 import { Heart } from "react-feather";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { PostCartData } from "@/Utils";
 import { ADDTOWISHLIST } from "@/ReduxToolkit/Reducers/AddtoCartReducer";
 
 const AddToWishList = ({ elem, staticActions }) => {
   const dispatch = useDispatch();
   const router = useRouter();
+
+  const wishlist = useSelector((state) => state.AddToCartReducer.wishlist);
+
   const AddtoWishList = () => {
     if (staticActions) {
       router.push("/page/wishlist");
     } else {
       PostCartData(`/api/addtowishlist`, { id: elem?.id })
         .then((res) => {
-          dispatch(ADDTOWISHLIST(res?.data));
+          const updatedWishlist = [...wishlist, elem?.id];
+          dispatch(ADDTOWISHLIST(updatedWishlist));
+          localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
+          router.push(`/page/wishlist`);
         })
         .catch((error) => {
-          return "There was an error!", error;
+          console.error("There was an error!", error);
         });
-      router.push(`/page/wishlist`);
     }
   };
-  useEffect(() => {}, [dispatch]);
+
   return (
     <li onClick={() => AddtoWishList()}>
       <a href="#javascript" className="wishlist">
