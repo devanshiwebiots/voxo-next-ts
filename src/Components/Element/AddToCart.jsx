@@ -1,4 +1,4 @@
-import { ADDTOCART } from "@/ReduxToolkit/Reducers/AddtoCartReducer";
+import { ADDTOCART, QUANTITY } from "@/ReduxToolkit/Reducers/AddtoCartReducer";
 import { ISCARTADD } from "@/ReduxToolkit/Reducers/ModalReducer";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -11,6 +11,7 @@ const AddToCartProduct = ({ elem, staticActions }) => {
   const { addToCartModal } = useSelector((state) => state.ModalReducer);
   const dispatch = useDispatch();
   const router = useRouter();
+  const addProduct = useSelector((state) => state.AddToCartReducer.product);
   const AddtoCart = () => {
     if (staticActions) {
       router.push("/page/cart");
@@ -19,7 +20,9 @@ const AddToCartProduct = ({ elem, staticActions }) => {
       axios
         .post("/api/addtocart", { id: elem?.id })
         .then((res) => {
-          dispatch(ADDTOCART(res.data));
+            const updatedCartlist = [...addProduct, elem?.id];
+          dispatch(ADDTOCART(updatedCartlist));         
+          localStorage.setItem("addProduct", JSON.stringify(updatedCartlist));
         })
         .catch((error) => {
           return "There was an error!", error;

@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
 import Product from "../../ApiData/Product.json";
-import { compareArr } from "../../ApiData/serverGlobalVariable";
-
-export function GET() {
-  const filterCart = Product.filter((data, i) => compareArr.includes(Number(data.id)))
+export function GET(req) {
+  const comapreIds = req.nextUrl.searchParams.get("compareProducts") ? JSON.parse(req.nextUrl.searchParams.get("compareProducts")) : [];
+   const filterCart = Product.filter((data) => comapreIds.includes(Number(data.id)));
   return NextResponse.json(filterCart);
 }

@@ -9,21 +9,38 @@ import TotalPrice from "./TotalPrice";
 import { toast } from "react-toastify";
 import { Btn } from "@/Components/AbstractElements";
 import { ADDTOCART } from "@/ReduxToolkit/Reducers/AddtoCartReducer";
+import axios from "axios";
 
 const ItemCart = () => {
   const [cartData, setCartData] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const { product } = useSelector((state) => state.AddToCartReducer);
+  const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
   const { symbol, currencyValue } = useSelector((state) => state.CurrencyReducer);
+ 
   useEffect(() => {
-    getAPIData(`/api/getcart`)
-      .then((res) => setCartData(res.data))
-      .catch((error) => {
-        return error;
-      });
+    const cartProductIds = JSON.parse(localStorage.getItem("addProduct")) || [];
+
+    if (cartProductIds.length > 0) {
+      setLoading(true);
+      axios
+        .get(`/api/getcart?addProduct=${JSON.stringify(cartProductIds)}`)
+        .then((res) => {
+          setCartData(res.data);
+        })
+        .catch((error) => {
+          return error;
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    } else {
+      setCartData([]);
+    }
   }, [product]);
+
   const getTotalPrice = () => {
     var addPrice = 0;
     const filterPrice =
@@ -71,7 +88,8 @@ const ItemCart = () => {
           </div>
           <ul className="custom-scroll">
             {cartData?.length > 0 ? (
-              cartData?.map((item) => {
+              cartData &&
+              cartData.map((item) => {
                 return (
                   <li key={item.id}>
                     <Media>

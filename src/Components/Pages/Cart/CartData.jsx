@@ -12,9 +12,9 @@ import { ADDTOCART, QUANTITY } from "@/ReduxToolkit/Reducers/AddtoCartReducer";
 const CartData = ({ cartData, setTotalMrp }) => {
   const { quantity } = useSelector((state) => state.AddToCartReducer);
   const dispatch = useDispatch();
-  const handleQtyChange = (qty, id, price) => {
-    dispatch(QUANTITY({ qty, id, price }));
-  };
+   const handleQtyChange = (qty, id, price) => {
+     dispatch(QUANTITY({ qty, id, price }));
+   };
 
   useEffect(() => {
     setTotalMrp(() => {
@@ -29,6 +29,9 @@ const CartData = ({ cartData, setTotalMrp }) => {
   const removeProduct = (product) => {
     deleteProduct(`/api/remove/cart/${product.id}`).then((res) => {
       dispatch(ADDTOCART(res?.data));
+      let addCartProducts = JSON.parse(localStorage.getItem("addProduct")) || [];
+      addCartProducts = addCartProducts.filter((index) => index !== product.id);
+      localStorage.setItem("addProduct", JSON.stringify(addCartProducts));      
     });
   };
 
