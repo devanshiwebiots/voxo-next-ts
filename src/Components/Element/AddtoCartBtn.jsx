@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { Btn } from "@/Components/AbstractElements";
 import { Addtocart } from "@/Constant";
@@ -8,11 +8,14 @@ import { ADDTOCART } from "@/ReduxToolkit/Reducers/AddtoCartReducer";
 
 const AddtoCartBtn = ({ customeclass, data, btn }) => {
   const dispatch = useDispatch();
+  const addProduct = useSelector((state) => state.AddToCartReducer.product);
   const AddtoCart = () => {
     axios
       .post(`/api/addtocart`, { id: data?.id })
       .then((res) => {
-        dispatch(ADDTOCART(res.data));
+        const updatedCartlist = [...addProduct, data?.id];
+        dispatch(ADDTOCART(updatedCartlist));
+        localStorage.setItem("addProduct", JSON.stringify(updatedCartlist));
       })
       .catch((error) => {
         return "There was an error!", error;

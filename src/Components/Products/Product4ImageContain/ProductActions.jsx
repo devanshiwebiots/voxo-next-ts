@@ -1,7 +1,7 @@
 import { Addtocart, freeshipping } from "@/Constant";
 import axios from "axios";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import ProductWishListAction from "./ProductWishListAction";
 import Img from "@/Components/Element/Images";
@@ -10,11 +10,15 @@ import { NOTIFICATIONALTER } from "@/ReduxToolkit/Reducers/ModalReducer";
 
 const ProductActions = ({ singleProduct }) => {
   const dispatch = useDispatch();
+  const addProduct = useSelector((state) => state.AddToCartReducer.product);
+
   const AddtoCart = () => {
     axios
       .post(`/api/addtocart`, { id: singleProduct ? singleProduct[0]?.id : 1 })
       .then((res) => {
-        dispatch(ADDTOCART(res.data));
+        const updatedCartlist = [...addProduct, singleProduct ? singleProduct[0]?.id : 1];
+        dispatch(ADDTOCART(updatedCartlist));
+        localStorage.setItem("addProduct", JSON.stringify(updatedCartlist));
       })
       .catch((error) => {
         return "There was an error!", error;
