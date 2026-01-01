@@ -3037,7 +3037,7 @@ tfoot {
           background-color: #232323;
         }
 
-        &::first-child {
+        &:first-child {
           @include mq-max(xs) {
             min-width: 85px;
           }
@@ -3078,7 +3078,7 @@ tfoot {
           }
         }
 
-        &::first-child {
+        &:first-child {
           @include mq-max(xs) {
             min-width: 85px;
           }

@@ -442,7 +442,7 @@
               text-overflow: ellipsis;
               white-space: nowrap;
 
-              &::nth-child(9) {
+              &:nth-child(9) {
                 margin-bottom: 0;
               }
             }

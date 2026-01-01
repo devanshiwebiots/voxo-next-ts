@@ -1,8 +1,8 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 @import 'vendors/font-awesome.scss';
 @import 'skeleton_loader.scss';
-@import '~slick-carousel/slick/slick.css';
-@import '~slick-carousel/slick/slick-theme.css';
+@import 'slick-carousel/slick/slick.css';
+@import 'slick-carousel/slick/slick-theme.css';
 
 // utils scss files
 @import './utils/variables';
@@ -68,4 +68,4 @@
 @import 'demo5.scss'; //flower
 @import 'demo6.scss'; //Vegetable
 
-@import '~react-toastify/dist/ReactToastify.css';
+@import 'react-toastify/dist/ReactToastify.css';
